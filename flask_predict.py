@@ -142,10 +142,9 @@ def get_words_bio_label(label_list):
             entity_tags.append(targets[start][2:].lower())
             entity_spans.append({"start_index": start, "end_index": end + 1})
             start_flag = False
-
-        output['entities'] = {i: entities[i_index] for i_index, i in enumerate(entity_tags)}
+        output['entities'] = [(i, entities[i_index]) for i_index, i in enumerate(entity_tags)]
         output['raw_text'] = "".join(words)
-        output['entity_spans'] = {i: entity_spans[i_index] for i_index, i in enumerate(entity_tags)}
+        output['entity_spans'] = [(i,entity_spans[i_index]) for i_index, i in enumerate(entity_tags)]
         outputs_list.append(output)
     return outputs_list
 
